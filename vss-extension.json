@@ -1,0 +1,19 @@
+{
+    "manifestVersion": 1,
+    "id": "azure-pipelines-tasks-databricks",
+    "name":  "Azure Pipelines tasks for databricks",
+    "version": "0.0.1",
+    "publisher": "franusierra",
+    "targets": [
+        {
+            "id": "Microsoft.VisualStudio.Services"
+        }
+    ],    
+    "description": "Azure pipelines tasks for databricks (Currently Being Developed). Centered arround deployments on azure databricks (may work on other platforms). ",
+    "categories": [
+        "Azure Pipelines"
+    ],
+    "icons": {
+        "default": "images/extension-icon.png"        
+    }
+}
