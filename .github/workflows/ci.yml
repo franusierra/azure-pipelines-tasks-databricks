@@ -12,8 +12,6 @@ jobs:
     name: continuous integration
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@4.1.0
       - name: Setup pnpm
         uses: pnpm/action-setup@v2.4.0
       - name: pnpm install and build
