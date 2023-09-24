@@ -2,7 +2,7 @@
     "manifestVersion": 1,
     "id": "azure-pipelines-tasks-databricks",
     "name":  "Azure Pipelines tasks for databricks",
-    "version": "0.0.1",
+    "version": "0.0.3",
     "publisher": "franusierra",
     "targets": [
         {
@@ -15,5 +15,55 @@
     ],
     "icons": {
         "default": "images/extension-icon.png"        
-    }
+    },
+    "contributions":[
+        {
+            "id": "azure-databricks-service-endpoint",
+            "description": "Service endpoint type for Databricks connections",
+            "type": "ms.vss-endpoint.service-endpoint-type",
+            "targets": [ "ms.vss-endpoint.endpoint-types" ],
+            "properties": {
+              "name": "azure-databricks",
+              "displayName": "Azure Databricks",
+              "url": {
+                "displayName": "Azure Databricks Host Url",
+                "helpText": "Url for azure databricks. Matches with the HOST databricks cli parameter. (eg. https://eastus2.azuredatabricks.com)"
+              },
+              
+              "dataSources":[
+                {
+                    "name":"TestConnection",
+                    "endpointUrl":"$(endpoint.url)/api/2.0/preview/scim/v2/Me",
+                    "resultSelector": "jsonpath:$.id"
+                }
+              ],
+              "authenticationSchemes": [
+                {
+                  "type": "ms.vss-endpoint.endpoint-auth-scheme-token",
+                  "headers": [
+                    {
+                        "name": "Authorization",
+                        "value": "Bearer {{ endpoint.apitoken }}"
+                    }
+                  ],
+                  "inputDescriptors": [
+                    {
+                      "id": "apitoken",
+                      "name": "Access Token",
+                      "description": "Access Token for Azure Databricks",
+                      "inputMode": "passwordbox",
+                      "isConfidential": true,
+                      "validation": {
+                        "isRequired": true,
+                        "dataType": "string"
+                      }
+                    }
+                  ]
+                }
+      
+              ],
+              "helpMarkDown": "<a href=\"url-to-documentation\" target=\"_blank\"><b>Learn More</b></a>"
+            }
+        }
+    ]
 }
